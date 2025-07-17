@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jitsi-meeting-app
+  labels:
+    app: jitsi-meeting
+spec:
+  replicas: 2 # Start with two pods
+  selector:
+    matchLabels:
+      app: jitsi-meeting
+  template:
+    metadata:
+      labels:
+        app: jitsi-meeting
+    spec:
+      containers:
+      - name: jitsi-meeting-container
+        image: 757509823452.dkr.ecr.us-east-1.amazonaws.com/jedi/jedi
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
